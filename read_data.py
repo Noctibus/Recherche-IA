@@ -28,7 +28,7 @@ def preprocess_text(df:pd.DataFrame):
     df["Produits et services"] = df["Produits et services"].apply(lambda x: x.split(";"))
 
     # remove characters except spaces that are not letters for each element of the list inside the column "Produits et services"
-    df["Produits et services"] = df["Produits et services"].apply(lambda x: [re.sub(r"[^a-zA-Z ]+", "", i) for i in x])
+    df["Produits et services"] = df["Produits et services"].apply(lambda x: [re.sub(r"[^a-zA-ZÀ-ÖØ-öø-ÿ\s ]+", "", i) for i in x])
 
     # convert to lowercase and split into words
     df["Produits et services"] = df["Produits et services"].apply(lambda x: [i.lower().split() for i in x])
