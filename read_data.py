@@ -38,7 +38,7 @@ def preprocess_text(df:pd.DataFrame):
     df["Produits et services"] = df["Produits et services"].apply(lambda x: [[j for j in i if j not in stops] for i in x])
 
     # add a new column : it is the concatenation of the column "Marque" and "Produits et services"
-    df["Words list"] = df.apply(lambda row: [row["Marque"]] + row["Produits et services"], axis=1)
+    df["Words list"] = df.apply(lambda row: [[row["Marque"]]] + row["Produits et services"], axis=1)
 
     # the column "Word list" is like [["hello", "world"], ["good", "morning"]]. Convert it to ["hello", "world", "good", "morning"] into a new column "Concatenated Words"
     df["Concatenated Words"] = df["Produits et services"].apply(lambda x: [j for i in x for j in i])
