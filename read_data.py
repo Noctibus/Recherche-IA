@@ -17,6 +17,8 @@ def preprocess_csv (df:pd.DataFrame):
     df = df.dropna(subset=['Marque'])
     df = df[df['Marque'].str.strip() != '']
 
+    df['Marque'] = df['Marque'].str.lower()
+
     return df
 
 
