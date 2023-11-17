@@ -1,7 +1,6 @@
 import re
 from nltk.corpus import stopwords
 import pandas as pd
-from read_data import read_data
 
 def preprocess_text(df:pd.DataFrame):
     # remove articles from the column "Produits et services", like "le", "la", "les", "l'", "un", "une", "des", "du", "de", "d'"
@@ -28,6 +27,3 @@ def preprocess_text(df:pd.DataFrame):
     df["Concatenated Words"] = df.apply(lambda row: [row["Marque"]] + row["Concatenated Words"], axis=1)
 
     return df
-
-df = read_data()
-df_train = preprocess_text(df)
