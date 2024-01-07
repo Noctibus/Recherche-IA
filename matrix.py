@@ -18,5 +18,10 @@ def matrix():
             mat[j][i] = similarity
     return matrix
 
+
+def save_matrix_to_file(mat:np.ndarray):
+    np.save("matrix", mat)
+
+
 mat = matrix()
-print(mat[:10][:10])
+save_matrix_to_file(mat)
