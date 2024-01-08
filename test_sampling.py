@@ -16,13 +16,10 @@ def extract_sample_datas (df:pd.DataFrame):
 
     # Les supprime du dataframe
     df = df.drop(df_real.index)
-    
+    df.to_csv("data_all.csv", sep=';', encoding='UTF-8', index=False)
     # Extraction de nb_sample lignes pour les données à falsifier
     df_false = df.sample(n = nb_sample, random_state=SEED)
-    
-    
-    
-    return df, df_real, df_false
+    return df_real
 
 
 
@@ -78,12 +75,6 @@ def create_false_datas (df:pd.DataFrame, df_false:pd.DataFrame):
 
         df_false.at[index, 'Marque'] = modified_brand
         df_false.at[index, 'Date de dépôt/enregistrement'] = placeholder_date
-    
-    return pd.concat([df_real, df_false])
-    
-    
-    
-    
-    
-    
-
+        
+    df_concat = pd.concat([df_real, df_false])
+    df_concat.to_csv("data_to_test.csv", sep=';', encoding='UTF-8', index=False)
