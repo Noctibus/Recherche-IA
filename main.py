@@ -25,5 +25,5 @@ if __name__ == '__main__':
         description = df_test[df_test['Marque'] == mark]['Produits et services'].values[0]
         ids = check(brand_name=mark, brand_description=description, df=df, min=0.8)
         print(ids)
-
+        break
     print(ids)

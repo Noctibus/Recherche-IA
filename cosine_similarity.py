@@ -8,18 +8,19 @@ import re
 def get_embeddings_dataframe():
     # return the embeddings dataframe. If it doesn't exist, create it
     try:
-        print("Reading embeddings.csv\n")
+        print("Reading embeddings.csv...")
         df_result = pd.read_csv("embeddings.csv", sep=';', encoding='UTF-8')
         # the column "Embeddings" is a string. Convert it to a list of floats
         df_result["Embeddings"] = df_result["Embeddings"].apply(lambda x: [float(i) for i in x[1:-1].split(", ")])
     except FileNotFoundError:
-        print("embeddings.csv not found. Computing embeddings.\n")
+        print("'embeddings.csv' file not found. Computing embeddings.\n")
         from read_data import read_csv, preprocess_csv, preprocess_text
         from model import get_embeddings
         df = read_csv()
         df = preprocess_csv(df)
         df = preprocess_text(df)
         df_result = get_embeddings(df)
+        df_result.to_csv("embeddings.csv", sep=';', encoding='UTF-8', index=False)
     return df_result
 
 
