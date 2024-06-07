@@ -11,6 +11,7 @@ def get_data():
 
 
 def get_embeddings(df:pd.DataFrame):
+    # Encode les mots concaténés dans le DataFrame
     model = SentenceTransformer('all-MiniLM-L6-v2')
     embedings = model.encode(df["Concatenated Words"].tolist())
     df_result = pd.DataFrame()
@@ -19,11 +20,13 @@ def get_embeddings(df:pd.DataFrame):
     return df_result
 
 def save_embeddings(df:pd.DataFrame):
+    # Sauvegarder les embeddings dans un fichier csv
     df_result = get_embeddings(df)
     df_result.to_csv("embeddings.csv", sep=';', encoding='UTF-8', index=False)
 
 
 def get_embedding_description(l:list[str]):
+    # Prend une liste de chaînes de caractères en entrée, utilise le modèle SentenceTransformer('all-MiniLM-L6-v2') pour encoder les chaînes de caractères, et renvoie les embeddings
     model = SentenceTransformer('all-MiniLM-L6-v2')
     return model.encode(l)
 

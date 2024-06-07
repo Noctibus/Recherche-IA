@@ -54,6 +54,7 @@ def get_vector_from_description(brand:str, description:list[float]):
 
 
 def cosine_similarity_brand(brand_a:str, brand_b:str, df:pd.DataFrame=None):
+    # Compute cosine similarity
     if df is None:
         df = get_embeddings_dataframe()
     vector_a = get_vector_from_brand(df, brand_a)
